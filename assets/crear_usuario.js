@@ -32,15 +32,18 @@ export default {
       },
       methods: {
          crearusuarios() {
-           /*let existe = this.lista_usuarios.find(x => this.usuario.id === x.id)
-           if (existe) {
-             alert("El usuario ya existe, verifique la información");
-             this.lista_usuarios = []
-             this.cargarusuario()
-             return;
-           }else {*/
-          localStorage.setItem(localStorage.length, JSON.stringify(this.usuario));
 
+          for (var i = 0; i < localStorage.length; i++) {
+            var task = JSON.parse(localStorage.getItem(i));
+            if(task.id == this.usuario.id){
+              alert("El usuario ya existe, verifique la información");
+              this.lista_usuarios = []
+              this.cargarusuario()
+              return;
+            }
+          }
+
+          localStorage.setItem(localStorage.length, JSON.stringify(this.usuario));
           this.usuario = {
             id: "",
             nombre: "",
@@ -53,9 +56,6 @@ export default {
           };
           console.log(this.peso);
           this.imc()
-        //}
-
-
         },
         eliminarusuarios(item) {
 

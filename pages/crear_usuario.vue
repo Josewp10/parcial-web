@@ -20,6 +20,7 @@
                   v-model="usuario.id"
                   placeholder="Ingrese el documento de identificación"
                   id="id"
+                  required
                 />
               </b-form-group>
 
@@ -30,6 +31,7 @@
                   v-model="usuario.nombre"
                   placeholder="Ingrese los nombres"
                   id="nombre"
+                  required
                 />
               </b-form-group>
 
@@ -39,6 +41,7 @@
                   v-model="usuario.apellidos"
                   id="apellidos"
                   placeholder="Ingrese los apellidos"
+                  required
                 />
               </b-form-group>
 
@@ -49,6 +52,7 @@
                   type="email"
                   id="correo"
                   placeholder="Ingrese correo electrónico"
+                  required
                 />
               </b-form-group>
 
@@ -60,6 +64,7 @@
                   min="0"
                   id="peso"
                   placeholder="Ingrese el peso"
+                  required
                 />
               </b-form-group>
 
@@ -72,6 +77,7 @@
                   max="300"
                   id="estatura"
                   placeholder="Ingrese la estatura"
+                  required
                 />
               </b-form-group>
 
