@@ -11,7 +11,7 @@
             <b-form action="javascript:void(0)" @submit="crearusuarios()">
 
 
-                <b-form-group label="id" label-for="id">
+                <b-form-group label="id:" label-for="id">
                 <b-form-input
                   class="form-control"
                   type="number"
@@ -24,7 +24,7 @@
               </b-form-group>
 
 
-              <b-form-group label="Nombre" label-for="nombre">
+              <b-form-group label="Nombre:" label-for="nombre">
                 <b-form-input
                   class="form-control"
                   v-model="usuario.nombre"
@@ -33,7 +33,7 @@
                 />
               </b-form-group>
 
-              <b-form-group label="Apellidos" label-for="apellidos">
+              <b-form-group label="Apellidos:" label-for="apellidos">
                 <b-form-input
                   class="form-control"
                   v-model="usuario.apellidos"
@@ -42,7 +42,7 @@
                 />
               </b-form-group>
 
-              <b-form-group label="Correo" label-for="correo">
+              <b-form-group label="Correo:" label-for="correo">
                 <b-form-input
                   class="form-control"
                   v-model="usuario.correo"
@@ -52,29 +52,32 @@
                 />
               </b-form-group>
 
-              <b-form-group label="Peso" label-for="peso">
+              <b-form-group label="Peso (Kg):" label-for="peso">
                 <b-form-input
                   class="form-control"
                   v-model="usuario.peso"
                   type="number"
+                  min="0"
                   id="peso"
                   placeholder="Ingrese el peso"
                 />
               </b-form-group>
 
-              <b-form-group label="Estatura" label-for="estatura">
+              <b-form-group label="Estatura (Cm):" label-for="estatura">
                 <b-form-input
                   class="form-control"
                   v-model="usuario.estatura"
                   type="number"
+                  min="0"
+                  max="300"
                   id="estatura"
                   placeholder="Ingrese la estatura"
                 />
               </b-form-group>
 
 
-              <b-button type="submit" variant="" v-if="!enEdicion">Crear Tarea</b-button>
-              <b-button @click="actualizarusuario()" variant="primary" v-else>Actualizar Tarea</b-button>
+              <b-button type="submit" variant="" v-if="!enEdicion">Crear usuario</b-button>
+              <b-button @click="actualizarusuario()" variant="primary" v-else>Actualizar Información</b-button>
             </b-form>
           </b-card>
           <br />
@@ -85,7 +88,15 @@
         <b-col>
           <b-table striped hover :items="lista_usuarios">
             <template v-slot:cell(acciones)="row">
-              <b-button size="sm" @click="enEdicion=true" class="mr-2" variant="warning">Modificar</b-button>
+              <b-button size="sm" @click="enEdicion=true" class="mr-2" variant="">Modificar</b-button>
+              <br/>
+              <br>
+              <b-button
+                size="sm"
+                @click="mensaje(row)"
+                class="mr-2"
+                variant=""
+              >Verificar</b-button>
               <br />
               <br />
               <b-button
@@ -94,6 +105,7 @@
                 class="mr-2"
                 variant="danger"
               >Eliminar</b-button>
+
             </template>
           </b-table>
         </b-col>
