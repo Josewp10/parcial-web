@@ -5,9 +5,9 @@
       <b-row cols="2">
         <b-col>
           <b-card title="Gestión de Tareas">
-            <b-img left="3px" src="" width="70" height="70"></b-img>
+            <b-img left="3px" src="@/static/images/account.png" width="70" height="70"></b-img>
             <b-card-text>Ingrese la información del usuario</b-card-text>
-
+            <br><br>
             <b-form action="javascript:void(0)" @submit="crearusuarios()">
 
 
