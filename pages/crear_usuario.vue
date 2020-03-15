@@ -16,7 +16,7 @@
                   class="form-control"
                   type="number"
                   max="9999"
-                  min="0001"
+                  min="0000"
                   v-model="usuario.id"
                   placeholder="Ingrese el documento de identificación"
                   id="id"
@@ -85,7 +85,7 @@
         <b-col>
           <b-table striped hover :items="lista_usuarios">
             <template v-slot:cell(acciones)="row">
-              <b-button size="sm" @click="cargarusuario(row)" class="mr-2" variant="warning">Modificar</b-button>
+              <b-button size="sm" @click="enEdicion=true" class="mr-2" variant="warning">Modificar</b-button>
               <br />
               <br />
               <b-button

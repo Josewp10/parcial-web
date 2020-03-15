@@ -2,6 +2,7 @@ export default {
     data() {
       return {
         enEdicion: false,
+        actualizar:0,
         usuario :{
           id:"",
           nombre:"",
@@ -11,7 +12,11 @@ export default {
           estatura:0,
           acciones: true
         },
-        lista_usuarios: [{
+        lista_usuarios: []
+      };
+      },
+      mounted(){
+        localStorage.setItem(0, JSON.stringify({
           id:"0",
           nombre:"Jose David",
           apellidos:"Marulanda Orozco",
@@ -19,46 +24,15 @@ export default {
           peso:70,
           estatura:170,
           acciones: true
-        }]
-      };
-      },
+        }));
+
+          this.cargarusuario( )
+      }
+      ,
       methods: {
          crearusuarios() {
-           var n = localStorage.length
-          localStorage.setItem(n+1, JSON.stringify(this.usuario));
 
-          this.usuario = {
-            id: "",
-            nombre: "",
-            apellidos: "",
-            correo: "",
-            peso:0,
-            estatura: 0
-          };
-console.log(this.lista_usuarios.length);
-        },
-        eliminarusuarios({ item }) {
-          let posicion = this.lista_usuarios.findIndex(
-            usuario => usuario.id == item.id
-          );
-          this.lista_usuarios.splice(posicion, 1);
-          localStorage.removeItem(posicion);
-        },
-        cargarusuario() {
-
-          for (var i = 0; i < localStorage.length; i++) {
-             var task = JSON.parse(localStorage.getItem(i));
-            this.lista_usuarios.push(this.usuario = Object.assign({}, task));
-          }
-          console.log("liista:"+this.lista_usuarios.length)
-
-        },
-        actualizarusuario() {
-          let posicion = this.lista_usuarios.findIndex(
-            usuario => usuario.id == this.usuario.id
-          );
-          //this.lista_usuarios.splice(posicion, 1, this.usuario);
-          localStorage.setItem(posicion,this.usuario);
+          localStorage.setItem(localStorage.length, JSON.stringify(this.usuario));
 
           this.usuario = {
             id: "",
@@ -67,9 +41,52 @@ console.log(this.lista_usuarios.length);
             correo: "",
             peso:0,
             estatura: 0,
-            acciones: true
+            acciones:true
           };
+          console.log(this.lista_usuarios.length);
+          this.lista_usuarios = []
+          this.cargarusuario()
+        //this.enEdicion=true
 
+        },
+        eliminarusuarios(item) {
+
+          for (var i = item.index; i < localStorage.length; i++) {
+            let tem =localStorage.getItem(i+1)
+            localStorage.setItem(i, tem);
+          }
+          localStorage.removeItem(localStorage.length-1)
+          this.lista_usuarios = []
+          this.cargarusuario()
+        },
+        cargarusuario() {
+
+          for (var i = 0; i <= localStorage.length; i++) {
+               var task = JSON.parse(localStorage.getItem(i));
+               console.log(task);
+               this.lista_usuarios.push(this.usuario = Object.assign({}, task))
+          }
+
+        },
+        actualizarusuario() {
+          let posicion = this.lista_usuarios.findIndex(
+            usuario => usuario.id == this.usuario.id
+          );
+
+          localStorage.setItem(posicion, JSON.stringify(this.usuario));
+
+          this.usuario = {
+            id: "",
+            nombre: "",
+            apellidos: "",
+            correo: "",
+            peso:0,
+            estatura: 0,
+            acciones:true
+          };
+          console.log(this.lista_usuarios.length);
+          this.lista_usuarios = []
+          this.cargarusuario()
         }
       }
     };
