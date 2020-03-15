@@ -11,7 +11,7 @@ export default {
           peso:0,
           estatura:0,
           imc:0,
-          acciones: false
+          acciones: true
         },
         lista_usuarios: []
       };
@@ -23,7 +23,7 @@ export default {
           apellidos:"Marulanda Orozco",
           correo:"jdmowp10@gmail.com",
           peso:70,
-          estatura:1.70+"M",
+          estatura:170,
           imc:21,
           acciones: true
         }));
@@ -96,6 +96,7 @@ export default {
           console.log(this.lista_usuarios.length);
           this.lista_usuarios = []
           this.cargarusuario()
+          this.enEdicion = false;
         },
         imc(){
           for (var i = 0; i < localStorage.length; i++) {
